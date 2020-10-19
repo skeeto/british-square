@@ -8,6 +8,22 @@
 #  define POPCOUNT(x) __builtin_popcountl(x)
 #endif
 
+#define COLOR_P1(s)  "\x1b[94m" s "\x1b[0m"
+#define COLOR_P2(s)  "\x1b[91m" s "\x1b[0m"
+#define COLOR_DMZ(s) "\x1b[93m" s "\x1b[0m"
+
+#ifdef _WIN32
+#  define TILE_EMPTY  "\xf9"
+#  define TILE_PIECE  "\xdb"
+#  define TILE_SINGLE "\xb0"
+#  define TILE_DOUBLE " "
+#else
+#  define TILE_EMPTY  "∙"
+#  define TILE_PIECE  "█"
+#  define TILE_SINGLE "░"
+#  define TILE_DOUBLE " "
+#endif
+
 // The full game state is represented by a 56-bit bitboard. The bottom 25 bits
 // are the first players pieces, the next 25 bits are the second player's
 // peices, and the next 6 bits are the 1-indexed turn number.
@@ -164,17 +180,17 @@ print(uint64_t b, uint64_t m)
             int p1 = b>>(i+25) & 1;
             int x0 = m>>(i+25) & 1;
             int x1 = m>>i      & 1;
-            char *c = ".";
+            char *c = TILE_EMPTY;
             if (p0) {
-                c = "\x1b[94mX\x1b[0m";
+                c = COLOR_P1(TILE_PIECE);
             } else if (p1) {
-                c = "\x1b[91mX\x1b[0m";
+                c = COLOR_P2(TILE_PIECE);
             } else if (x0 && x1) {
-                c = "\x1b[93m~\x1b[0m";
+                c = COLOR_DMZ(TILE_DOUBLE);
             } else if (x0) {
-                c = "\x1b[94m~\x1b[0m";
+                c = COLOR_P1(TILE_SINGLE);
             } else if (x1) {
-                c = "\x1b[91m~\x1b[0m";
+                c = COLOR_P2(TILE_SINGLE);
             }
             fputs(c, stdout);
         }
@@ -448,9 +464,9 @@ minimax_show(uint64_t b, uint64_t m)
         if (valid(m, i)) {
             int s = getscore(eval(place(b, i), mask(m, i)));
             if (s > 0) {
-                printf("\x1b[94m%x\x1b[0m", s);
+                printf(COLOR_P1("%x"), s);
             } else if (s < 0) {
-                printf("\x1b[91m%x\x1b[0m", -s);
+                printf(COLOR_P2("%x"), -s);
             } else {
                 putchar('0');
             }
