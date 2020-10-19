@@ -8,6 +8,8 @@ The full analysis takes 3.5 seconds on modern hardware. In [Minimax
 mode][mm] (the default), the entire game tree fits in ~66MiB of memory.
 Source comments document the engine's bitboard.
 
+![](https://nullprogram.com/img/british-square/british-square.jpg)
+
 ## Rules
 
 The game is played with two players on a 5x5 grid. The players take
