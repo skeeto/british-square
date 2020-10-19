@@ -8,6 +8,8 @@ The full analysis takes 3.5 seconds on modern hardware. In [Minimax
 mode][mm] (the default), the entire game tree fits in ~66MiB of memory.
 Source comments document the engine's bitboard.
 
+Full article: [I Solved British Square][about]
+
 ![](https://nullprogram.com/img/british-square/british-square.jpg)
 
 ## Rules
@@ -79,6 +81,7 @@ This program fully works on any unix-like system and Windows 10. It's
 been tested with GCC, Clang, and Visual Studio.
 
 
+[about]: https://nullprogram.com/blog/2020/10/19/
 [bs]: https://boardgamegeek.com/boardgame/3719/british-square
 [mm]: https://en.wikipedia.org/wiki/Minimax
 [pm]: https://www.youtube.com/watch?v=PChKZbut3lM&t=10m
