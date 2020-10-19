@@ -71,6 +71,11 @@ bitboard and hash table settings.
 
     make OPTS=-DBENCHMARK
 
+## Supported systems
+
+This program fully works on any unix-like system and Windows 10. It's
+been tested with GCC, Clang, and Visual Studio.
+
 
 [bs]: https://boardgamegeek.com/boardgame/3719/british-square
 [mm]: https://en.wikipedia.org/wiki/Minimax
