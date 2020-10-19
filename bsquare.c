@@ -398,7 +398,7 @@ lookup(uint64_t b)
     }
 }
 
-// Tally all outcomes rooted at the given board with mask. Note: The board
+// Evaluate all outcomes rooted at the given board with mask. Note: The board
 // embedded in the returned slot is the canonical board.
 static slot_t
 eval(uint64_t b, uint64_t m)
@@ -434,6 +434,7 @@ eval(uint64_t b, uint64_t m)
     return (*slot = s);
 }
 
+// Suggest a list of perfect plays from this board.
 static int
 suggest(uint64_t b, uint64_t m, int *moves)
 {
@@ -457,6 +458,8 @@ suggest(uint64_t b, uint64_t m, int *moves)
 }
 
 #ifndef TALLY
+
+// Display the minimax values for all possible moves.
 static void
 minimax_show(uint64_t b, uint64_t m)
 {
@@ -481,6 +484,7 @@ minimax_show(uint64_t b, uint64_t m)
 }
 #endif
 
+// Enable terminal colors on platforms that need special handling.
 static void
 enable_color(void)
 {
