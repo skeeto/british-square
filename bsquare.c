@@ -586,8 +586,8 @@ main(void)
     enable_color();
 
     display(eval(INIT, INIT));
-    printf("Table entries: %zu (%.3f MB)\n",
-           table_len, sizeof(*table)*table_len/(1024.0*1024.0));
+    printf("Table entries: %ld (%.3f MB)\n",
+           (long)table_len, sizeof(*table)*table_len/(1024.0*1024.0));
 
 #if defined(TEST_HEURISTIC)
     long fails = test_heuristic();
